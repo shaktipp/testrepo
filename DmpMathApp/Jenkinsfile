@@ -9,13 +9,14 @@ pipeline{
 				git 'https://github.com/shaktipp/testrepo.git'
 			}			
 		}
-		stage('cheange2BaseDir') {
+		stage('cd BaseDir') {
 			steps {
-				sh 'cd DmpMathApp'
-				sh 'echo pwd'
+				sh '''
+				cd DmpMathApp
+				echo pwd
+				'''
 			}					
 		}
-		st
 		stage('Build') {
 			steps {
 				sh 'mvn clean compile'
