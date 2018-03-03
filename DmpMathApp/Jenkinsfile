@@ -12,32 +12,32 @@ pipeline{
 		stage('cd BaseDir') {
 			steps {
 				sh '''
-				cd DmpMathApp
-				echo pwd
+				    cd DmpMathApp
+				    echo pwd
 				'''
 			}					
 		}
 		stage('Build') {
 			steps {
-				sh 'mvn clean compile'
+				sh 'mvn -f DmpMatApp/pom.xml clean compile'
 			}					
 		}
 		stage('Test') {
 			steps {
-				sh 'mvn test'
+				sh 'mvn -f DmpMatApp/pom.xml test'
 				junit '**/target/surefire-reports/TEST-*.xml'
 				archive 'target/*.jar'
 			}
 		}
 		stage('Package') {
 			steps {
-				sh 'mvn package'
+				sh 'mvn -f DmpMatApp/pom.xml package'
 			}
 		}
 		
 		stage('Sonar Scan') {
 			steps {
-				sh 'mvn sonar:sonar'
+				sh 'mvn -f DmpMatApp/pom.xml sonar:sonar'
 			}
 		}
 		
