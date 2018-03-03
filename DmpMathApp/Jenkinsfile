@@ -8,36 +8,28 @@ pipeline{
 			steps {
 				git 'https://github.com/shaktipp/testrepo.git'
 			}			
-		}
-		stage('cd BaseDir') {
-			steps {
-				sh '''
-				    cd DmpMathApp
-				    echo pwd
-				'''
-			}					
-		}
+		}		
 		stage('Build') {
 			steps {
-				sh 'mvn -f DmpMatApp/pom.xml clean compile'
+				sh 'mvn -f DmpMathApp/pom.xml clean compile'
 			}					
 		}
 		stage('Test') {
 			steps {
-				sh 'mvn -f DmpMatApp/pom.xml test'
+				sh 'mvn -f DmpMathApp/pom.xml test'
 				junit '**/target/surefire-reports/TEST-*.xml'
 				archive 'target/*.jar'
 			}
 		}
 		stage('Package') {
 			steps {
-				sh 'mvn -f DmpMatApp/pom.xml package'
+				sh 'mvn -f DmpMathApp/pom.xml package'
 			}
 		}
 		
 		stage('Sonar Scan') {
 			steps {
-				sh 'mvn -f DmpMatApp/pom.xml sonar:sonar'
+				sh 'mvn -f DmpMathApp/pom.xml sonar:sonar'
 			}
 		}
 		
