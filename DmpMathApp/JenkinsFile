@@ -6,7 +6,7 @@ pipeline{
 	stages{
 		stage('Checkout'){
 			steps {
-				git 'https://ShaktiPrasadaPanda@gitserver.fairisaac.com:8443/scm/ompto/shaktirepo.git'
+				git 'https://github.com/shaktipp/testrepo.git'
 			}			
 		}
 		stage('Build') {
