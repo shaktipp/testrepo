@@ -11,25 +11,25 @@ pipeline{
 		}
 		stage('Build') {
 			steps {
-				sh 'mvn clean compile'
+				sh './DmpMathApp/mvn clean compile'
 			}					
 		}
 		stage('Test') {
 			steps {
-				sh 'mvn test'
+				sh './DmpMathApp/mvn test'
 				junit '**/target/surefire-reports/TEST-*.xml'
 				archive 'target/*.jar'
 			}
 		}
 		stage('Package') {
 			steps {
-				sh 'mvn package'
+				sh './DmpMathApp/mvn package'
 			}
 		}
 		
 		stage('Sonar Scan') {
 			steps {
-				sh 'mvn sonar:sonar'
+				sh './DmpMathApp/mvn sonar:sonar'
 			}
 		}
 		
