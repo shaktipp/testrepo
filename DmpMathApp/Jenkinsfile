@@ -9,27 +9,34 @@ pipeline{
 				git 'https://github.com/shaktipp/testrepo.git'
 			}			
 		}
+		stage('cheange2BaseDir') {
+			steps {
+				sh 'cd DmpMathApp'
+				sh 'echo pwd'
+			}					
+		}
+		st
 		stage('Build') {
 			steps {
-				sh './DmpMathApp/mvn clean compile'
+				sh 'mvn clean compile'
 			}					
 		}
 		stage('Test') {
 			steps {
-				sh './DmpMathApp/mvn test'
+				sh 'mvn test'
 				junit '**/target/surefire-reports/TEST-*.xml'
 				archive 'target/*.jar'
 			}
 		}
 		stage('Package') {
 			steps {
-				sh './DmpMathApp/mvn package'
+				sh 'mvn package'
 			}
 		}
 		
 		stage('Sonar Scan') {
 			steps {
-				sh './DmpMathApp/mvn sonar:sonar'
+				sh 'mvn sonar:sonar'
 			}
 		}
 		
